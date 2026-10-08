@@ -1,0 +1,24 @@
+<dataSets>
+    <dataSet_1>
+        <firstName>Elena</firstName>
+        <lastName>Solomon</lastName>
+        <emailAddress>test@gmail.com</emailAddress>
+        <phoneNumber>0751607043</phoneNumber>
+        <address>Bd Republicii, nr 110</address>
+        <city>Onesti</city>
+        <state>Bacau</state>
+        <postCode>600100</postCode>
+    </dataSet_1>
+
+    <dataSet_2>
+        <firstName>Robert</firstName>
+        <lastName>Constantin</lastName>
+        <emailAddress>test123@gmail.com</emailAddress>
+        <phoneNumber>0751607000</phoneNumber>
+        <address>Str Aleea Carpati, nr 13A</address>
+        <city>Targu Mures</city>
+        <state>Mures</state>
+        <postCode>510000</postCode>
+    </dataSet_2>
+</dataSets>
+
