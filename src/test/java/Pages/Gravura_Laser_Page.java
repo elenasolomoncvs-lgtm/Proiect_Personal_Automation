@@ -2,6 +2,8 @@ package Pages;
 
 import HelperMethods.ElementMethods;
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -15,28 +17,39 @@ public class Gravura_Laser_Page {
     private WebDriverWait wait;
     private JavascriptExecutor js;
 
-    // Locators (By)
-    private By laserEngravingCategories = By.xpath("//a[normalize-space()='Gravură Laser']");
-    private By lensProduct = By.xpath("//a[.//img[@alt='Lentilă focalizare laser']]");
-    private By focusDropdown = By.xpath("//select[@id='focalizare' and @name='attribute_focalizare']");
-    private By addToCartButton = By.xpath("//button[contains(text(),'Adaugă în coș')]");
-    private By successMessage = By.xpath("//*[contains(text(), 'adăugat în coș') or contains(text(), 'added to your cart')]");
-    private By viewCartButton = By.cssSelector("a.wc-forward");
+    @FindBy(xpath = "//a[normalize-space()='Gravură Laser']")
+    private List<WebElement> laserEngravingCategories;
 
-    // Constructor
+    @FindBy(xpath = "//a[.//img[@alt='Lentilă focalizare laser']]")
+    private WebElement lensProduct;
+
+    @FindBy(xpath = "//select[@id='focalizare' and @name='attribute_focalizare']")
+    private WebElement focusDropdown;
+
+    @FindBy(xpath = "//button[contains(@class,'single_add_to_cart_button')]")
+    private WebElement addToCartButton;
+
+    @FindBy(xpath = "//*[contains(text(), 'adăugat în coș') or contains(text(), 'added to your cart')]")
+    private WebElement successMessage;
+
+    @FindBy(css = "a.wc-forward")
+    private WebElement viewCartButton;
+
     public Gravura_Laser_Page(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         this.js = (JavascriptExecutor) driver;
+
+        PageFactory.initElements(driver, this);
     }
 
-    // Action Methods
     public void selectThirdCategory() {
-        List<WebElement> categoryList = driver.findElements(laserEngravingCategories);
-        if (categoryList.size() >= 3) {
-            categoryList.get(2).click();
+
+        if (laserEngravingCategories.size() >= 3) {
+            laserEngravingCategories.get(2).click();
         } else {
-            throw new RuntimeException("Fewer than 3 categories were found for 'Gravură Laser'");
+            throw new RuntimeException(
+                    "Fewer than 3 categories were found for 'Gravură Laser'");
         }
     }
 
@@ -45,7 +58,7 @@ public class Gravura_Laser_Page {
     }
 
     public void scrollDown(int pixels) {
-        js.executeScript("window.scrollBy(0, " + pixels + ");");
+        js.executeScript("window.scrollBy(0, arguments[0]);", pixels);
     }
 
     public void scrollToTop() {
@@ -53,55 +66,64 @@ public class Gravura_Laser_Page {
     }
 
     public void selectLensProduct() {
-        WebElement product = wait.until(ExpectedConditions.elementToBeClickable(lensProduct));
-        product.click();
+        wait.until(ExpectedConditions.elementToBeClickable(lensProduct));
+        lensProduct.click();
     }
 
     public void selectFocusByIndex(int index) {
-        WebElement dropdownElement = wait.until(ExpectedConditions.presenceOfElementLocated(focusDropdown));
-        Select select = new Select(dropdownElement);
+        wait.until(ExpectedConditions.visibilityOf(focusDropdown));
+        Select select = new Select(focusDropdown);
         select.selectByIndex(index);
     }
 
-
     public void addToCart() {
 
-        WebDriverWait customWait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebDriverWait customWait =
+                new WebDriverWait(driver, Duration.ofSeconds(5));
 
         try {
-            WebElement button = customWait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(@class,'single_add_to_cart_button')]")));
-            button.click();
 
-        } catch (StaleElementReferenceException e) {WebElement button = customWait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(@class,'single_add_to_cart_button')]")));
-            button.click();
+            customWait.until(
+                    ExpectedConditions.elementToBeClickable(addToCartButton));
+
+            addToCartButton.click();
+
+        } catch (StaleElementReferenceException e) {
+
+            PageFactory.initElements(driver, this);
+
+            customWait.until(
+                    ExpectedConditions.elementToBeClickable(addToCartButton));
+
+            addToCartButton.click();
         }
     }
 
     public void acceptAlertIfPresent() {
-        // Așteaptă până la 5 secunde să apară alerta și apoi comută pe ea
+
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5)); // un timp mai scurt
-            Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+
+            Alert alert = new WebDriverWait(driver, Duration.ofSeconds(5))
+                    .until(ExpectedConditions.alertIsPresent());
+
             alert.accept();
+
         } catch (TimeoutException e) {
             System.out.println("Alerta nu a apărut, se continuă execuția.");
         }
     }
 
-//    public String getConfirmationMessageText() {
-//        //By viewCartButton = By.xpath("//*[contains(text(),'a fost adăugat în coș')]");
-//        By viewCartButton = By.xpath("//a[normalize-space()='Vezi coșul']");
-//        return wait.until(ExpectedConditions.visibilityOfElementLocated(viewCartButton)).getText();
-//    }
+    public boolean isSuccessMessageDisplayed() {
 
-//    public boolean isViewCartButtonDisplayed() {
-//        By viewCartButton = By.cssSelector("a.wc-forward");;
-//
-//        return wait.until(ExpectedConditions.visibilityOfElementLocated(viewCartButton)).isDisplayed();
-//    }
+        wait.until(ExpectedConditions.visibilityOf(successMessage));
+
+        return successMessage.isDisplayed();
+    }
 
     public boolean isViewCartButtonDisplayed() {
 
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(viewCartButton)).isDisplayed();
+        wait.until(ExpectedConditions.visibilityOf(viewCartButton));
+
+        return viewCartButton.isDisplayed();
     }
 }

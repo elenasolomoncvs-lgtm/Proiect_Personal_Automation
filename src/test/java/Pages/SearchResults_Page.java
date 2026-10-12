@@ -27,6 +27,9 @@ public class SearchResults_Page {
     @FindBy(css = "h1.page-title, h1.entry-title")
     WebElement pageTitle;
 
+    @FindBy(xpath = "//*[contains(text(),'Nu a fost găsit niciun produs') or contains(text(),'No products were found matching your selection')]")
+    WebElement noResultsMessage;
+
     public boolean hasResults() {
 
         try {
@@ -41,5 +44,20 @@ public class SearchResults_Page {
 
     public int getResultsCount() {
         return productList.size();
+    }
+
+    public boolean isNoResultsMessageDisplayed() {
+
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            wait.until(ExpectedConditions.visibilityOf(noResultsMessage));
+            return noResultsMessage.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public String getNoResultsMessageText() {
+        return noResultsMessage.getText();
     }
 }
