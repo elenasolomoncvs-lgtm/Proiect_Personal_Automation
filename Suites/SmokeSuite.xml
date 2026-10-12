@@ -3,7 +3,7 @@
 <suite name="Smoke Suite">
     <test name="Checkout Regression Tests">
         <classes>
-            <class name="Tests.CheckOutTest"/>
+            <class name="Tests.My_Account_Test"/>
         </classes>
     </test>
 </suite>

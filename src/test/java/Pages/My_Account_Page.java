@@ -2,11 +2,14 @@ package Pages;
 
 import HelperMethods.ElementMethods;
 import ObjectData.My_Account_Object;
+import com.aventstack.chaintest.plugins.ChainTestListener;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.Listeners;
 
+@Listeners(ChainTestListener.class)
 public class My_Account_Page {
     WebDriver driver;
     ElementMethods elementMethods;

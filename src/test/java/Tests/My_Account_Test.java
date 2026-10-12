@@ -6,10 +6,12 @@ import ObjectData.My_Account_Object;
 import Pages.My_Account_Page;
 import Pages.Home_Page;
 import XmlReader.XmlDataLoader;
+import com.aventstack.chaintest.plugins.ChainTestListener;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.util.Map;
-
+    @Listeners(ChainTestListener.class)
 public class My_Account_Test extends TestBasePage {
 
     private Map<String, My_Account_Object> authentificationOblectMap;
