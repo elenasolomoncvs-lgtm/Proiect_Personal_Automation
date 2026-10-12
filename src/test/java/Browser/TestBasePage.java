@@ -1,6 +1,7 @@
 package Browser;
 
 import Logger.LoggerUtility;
+import com.aventstack.chaintest.plugins.ChainTestListener;
 import org.apache.logging.log4j.ThreadContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -8,6 +9,9 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
+
+    @Listeners(ChainTestListener.class)
 
 public class TestBasePage {
     private WebDriver driver;

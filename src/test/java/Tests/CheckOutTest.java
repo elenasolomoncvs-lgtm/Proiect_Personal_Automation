@@ -7,10 +7,13 @@ import Pages.CheckOutPage;
 import Pages.CommonPage;
 import Pages.Home_Page;
 import XmlReader.XmlDataLoader;
+import com.aventstack.chaintest.plugins.ChainTestListener;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.util.Map;
 
+@Listeners(ChainTestListener.class)
 public class CheckOutTest extends TestBasePage {
 
     private Map<String, CheckOutObject> CheckOutObjectMap;
