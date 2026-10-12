@@ -1,0 +1,9 @@
+<configuration>
+    <DataBaseConfig>
+        <port>3306</port>
+        <dataBase>CheckOut_Database</dataBase>
+        <userName>root</userName>
+        <password>Testautomation01!</password>
+    </DataBaseConfig>
+
+</configuration>

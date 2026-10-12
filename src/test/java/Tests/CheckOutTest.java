@@ -11,15 +11,16 @@ import com.aventstack.chaintest.plugins.ChainTestListener;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import java.sql.SQLException;
 import java.util.Map;
 
-@Listeners(ChainTestListener.class)
+    @Listeners(ChainTestListener.class)
 public class CheckOutTest extends TestBasePage {
 
     private Map<String, CheckOutObject> CheckOutObjectMap;
 
     @Test
-    public void metodaTest() {
+    public void metodaTest() throws SQLException {
 
         LoggerUtility.infoTestCase("Loading checkout test data");
 
@@ -30,6 +31,8 @@ public class CheckOutTest extends TestBasePage {
         LoggerUtility.infoTestCase("Test data loaded successfully");
 
         CheckOutPage checkOutPage = new CheckOutPage(getDriver());
+
+        checkOutPage.addEntryInTable(data);
 
         LoggerUtility.infoTestCase("Opening Consumabile Laser menu");
         checkOutPage.clickOnMenu();

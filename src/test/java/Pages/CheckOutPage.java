@@ -1,5 +1,6 @@
 package Pages;
 
+import DataBase.Queries.CheckOutTable;
 import HelperMethods.ElementMethods;
 import Logger.LoggerUtility;
 import ObjectData.CheckOutObject;
@@ -14,6 +15,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import java.sql.SQLException;
 import java.time.Duration;
 
 public class CheckOutPage {
@@ -21,6 +23,7 @@ public class CheckOutPage {
     private WebDriver driver;
     private ElementMethods elementMethods;
     private WebDriverWait wait;
+    CheckOutTable checkOutTable;
 
     // Locators
     @FindBy(id = "billing_first_name")
@@ -67,9 +70,10 @@ public class CheckOutPage {
 
     // Constructors
 
-    public CheckOutPage(WebDriver driver) {
+    public CheckOutPage(WebDriver driver) throws SQLException {
         this.driver = driver;
         this.elementMethods = new ElementMethods(driver);
+        this.checkOutTable = new CheckOutTable();
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         PageFactory.initElements(driver, this);
@@ -133,12 +137,7 @@ public class CheckOutPage {
     }
 
     public void verifyEntry(CheckOutObject data) {
-
-        Assert.assertEquals(
-                firstNameField.getAttribute("value"),
-                data.getFirstName(),
-                "Prenumele nu a fost corect");
-
+        Assert.assertEquals(firstNameField.getAttribute("value"), data.getFirstName(), "Prenumele nu a fost corect");
         LoggerUtility.infoTestCase("User verified First Name");
         Assert.assertEquals(lastNameField.getAttribute("value"), data.getLastName(), "Numele nu a fost corect");
         LoggerUtility.infoTestCase("User verified Last Name");
@@ -167,5 +166,10 @@ public class CheckOutPage {
 
             System.out.println("No alert displayed.");
         }
+    }
+
+    public void addEntryInTable(CheckOutObject data) throws SQLException {
+        checkOutTable.insertTableRow(data);
+
     }
 }
