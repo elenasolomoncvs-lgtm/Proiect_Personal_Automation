@@ -9,8 +9,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-
-
 public class Home_Page {
     WebDriver driver;
     ElementMethods elementMethods;
@@ -27,6 +25,7 @@ public class Home_Page {
         elementsButton.click();
     }
 
+    // Locators
     @FindBy(id = "Consumabile laser")
     WebElement consumabileLaserElement;
 
@@ -45,7 +44,7 @@ public class Home_Page {
     @FindBy(css = "button[type='submit'], .search-submit, form.search-form button, .search-button")
     WebElement searchButton;
 
-
+    // Constructors
     public void clickOnMenu() {
         elementMethods.clickOnElement(consumabileLaserElement);
     }

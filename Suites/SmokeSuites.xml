@@ -5,8 +5,8 @@
 
     <test name="Smoke Tests">
         <classes>
-            <class name = "Tests.My_Account_Test"></class>
-            <class name = "Tests.CheckOutTest"></class>
+            <class name="Tests.My_Account_Test"></class>
+            <class name="Tests.CheckOutTest"></class>
         </classes>
     </test>
 

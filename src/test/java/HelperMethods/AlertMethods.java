@@ -17,28 +17,28 @@ public class AlertMethods {
 
     }
 
-    public void alertOk(){
+    public void alertOk() {
         Alert alertOk = driver.switchTo().alert();
         alertOk.accept();
     }
 
-    public void alertWithDelay(int seconds){
+    public void alertWithDelay(int seconds) {
         wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
         wait.until(ExpectedConditions.alertIsPresent());
         alertOk();
     }
 
-    public void alertConfirm(){
+    public void alertConfirm() {
         Alert alertConfirm = driver.switchTo().alert();
         alertConfirm.accept();
     }
 
-    public void alertCancel(){
+    public void alertCancel() {
         Alert alertCancel = driver.switchTo().alert();
         alertCancel.dismiss();
     }
 
-    public void alertText(String value){
+    public void alertText(String value) {
         Alert alertText = driver.switchTo().alert();
         alertText.sendKeys(value);
         alertText.accept();

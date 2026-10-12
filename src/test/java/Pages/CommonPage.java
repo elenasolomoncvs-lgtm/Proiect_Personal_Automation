@@ -17,11 +17,13 @@ public class CommonPage {
         this.driver = driver;
         this.elementMethods = new ElementMethods(driver);
         PageFactory.initElements(driver, this); //fara aceasta linie nu o sa gaseasca elementele
-
     }
+
+    // Locator
     @FindBy(id = "shipping_method_0_flat_rate15")
     List<WebElement> elements;
 
+    // Constructor
     public void clickOnShippingMethod(String text) {
         elementMethods.selectElementFromListByText(elements, text);
         LoggerUtility.infoTestCase("The user clicked on " + text + " submenu");

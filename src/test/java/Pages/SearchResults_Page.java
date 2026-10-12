@@ -21,6 +21,7 @@ public class SearchResults_Page {
         PageFactory.initElements(driver, this);
     }
 
+    // Locators
     @FindBy(css = ".product, ul.products li, .product-title, .woocommerce-loop-product__title")
     List<WebElement> productList;
 
@@ -30,13 +31,14 @@ public class SearchResults_Page {
     @FindBy(xpath = "//*[contains(text(),'Nu a fost găsit niciun produs') or contains(text(),'No products were found matching your selection')]")
     WebElement noResultsMessage;
 
+    // Constructors
     public boolean hasResults() {
 
         try {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
             wait.until(ExpectedConditions.urlContains("s="));
         } catch (Exception ignored) {
-            // Dacă URL-ul nu conține s=, continuăm verificarea
+
         }
 
         return !productList.isEmpty();

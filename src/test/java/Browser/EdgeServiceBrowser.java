@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 
-public class EdgeServiceBrowser implements IBrowser_Service{
+public class EdgeServiceBrowser implements IBrowser_Service {
 
     private WebDriver driver;
 

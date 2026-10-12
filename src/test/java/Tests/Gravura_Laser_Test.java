@@ -22,8 +22,7 @@ public class Gravura_Laser_Test extends TestBasePage {
         LoggerUtility.infoTestCase("Navigating to Gravura Laser category");
         homepage.clickOnGravuraLaser();
 
-        Gravura_Laser_Page gravuraLaserPage =
-                new Gravura_Laser_Page(getDriver());
+        Gravura_Laser_Page gravuraLaserPage = new Gravura_Laser_Page(getDriver());
 
         LoggerUtility.infoTestCase("Selecting third Gravura Laser category");
         gravuraLaserPage.selectThirdCategory();

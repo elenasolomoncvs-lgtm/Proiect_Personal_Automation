@@ -11,12 +11,13 @@ public class My_Account_Page {
     WebDriver driver;
     ElementMethods elementMethods;
 
-    public My_Account_Page(WebDriver driver){
+    public My_Account_Page(WebDriver driver) {
         this.driver = driver;
         this.elementMethods = new ElementMethods(driver);
         PageFactory.initElements(driver, this);
     }
 
+    // Locators
     @FindBy(id = "username")
     WebElement usernameField;
 
@@ -24,23 +25,23 @@ public class My_Account_Page {
     WebElement passwordField;
 
     @FindBy(xpath = "//button[@name='login']")
-    WebElement  loginButton;
+    WebElement loginButton;
 
-
-    public void addEntry(My_Account_Object data){
+    // Constructors
+    public void addEntry(My_Account_Object data) {
         enterUsenameField(data.getUsename());
         enterPasswordField(data.getPassword());
     }
 
-    public void enterUsenameField(String username){
+    public void enterUsenameField(String username) {
         elementMethods.enterText(usernameField, username);
     }
 
-    public void enterPasswordField(String password){
+    public void enterPasswordField(String password) {
         elementMethods.enterText(passwordField, password);
     }
 
-    public void clickOnLoginButton(){
+    public void clickOnLoginButton() {
         loginButton.click();
     }
 

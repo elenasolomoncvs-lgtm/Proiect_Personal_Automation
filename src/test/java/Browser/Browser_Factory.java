@@ -4,22 +4,22 @@ import org.openqa.selenium.WebDriver;
 
 public class Browser_Factory {
 
-    public WebDriver getBrowserFactory(){
+    public WebDriver getBrowserFactory() {
 
         String browser = System.getProperty("browser");
 
-        switch (browser){
+        switch (browser) {
             case BrowserType.BROWSER_CHROME:
-            ChromeServiceBrowser chromeServiceBrowser = new ChromeServiceBrowser();
-            chromeServiceBrowser.openBrowser();
-            System.out.println("Acum ruleaza pe " + browser);
-            return chromeServiceBrowser.getDriver();
+                ChromeServiceBrowser chromeServiceBrowser = new ChromeServiceBrowser();
+                chromeServiceBrowser.openBrowser();
+                System.out.println("Acum ruleaza pe " + browser);
+                return chromeServiceBrowser.getDriver();
 
             case BrowserType.BROWSER_EDGE:
-            EdgeServiceBrowser edgeServiceBrowser = new EdgeServiceBrowser();
-            edgeServiceBrowser.openBrowser();
-            System.out.println("Acum ruleaza pe " + browser);
-            return edgeServiceBrowser.getDriver();
+                EdgeServiceBrowser edgeServiceBrowser = new EdgeServiceBrowser();
+                edgeServiceBrowser.openBrowser();
+                System.out.println("Acum ruleaza pe " + browser);
+                return edgeServiceBrowser.getDriver();
 
         }
         return null;

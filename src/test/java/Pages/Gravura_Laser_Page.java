@@ -17,6 +17,7 @@ public class Gravura_Laser_Page {
     private WebDriverWait wait;
     private JavascriptExecutor js;
 
+    // Locators
     @FindBy(xpath = "//a[normalize-space()='Gravură Laser']")
     private List<WebElement> laserEngravingCategories;
 
@@ -35,6 +36,7 @@ public class Gravura_Laser_Page {
     @FindBy(css = "a.wc-forward")
     private WebElement viewCartButton;
 
+    // Constructors
     public Gravura_Laser_Page(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));

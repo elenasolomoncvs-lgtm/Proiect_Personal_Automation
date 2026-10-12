@@ -10,9 +10,11 @@ public class My_Account_Object {
     public String getEmailAddress() {
         return emailAddress;
     }
+
     public String getUsename() {
         return username;
     }
+
     public String getPassword() {
         return password;
     }
