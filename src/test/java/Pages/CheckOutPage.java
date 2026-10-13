@@ -23,7 +23,7 @@ public class CheckOutPage {
     private WebDriver driver;
     private ElementMethods elementMethods;
     private WebDriverWait wait;
-    CheckOutTable checkOutTable;
+//    CheckOutTable checkOutTable;
 
     // Locators
     @FindBy(id = "billing_first_name")
@@ -73,7 +73,7 @@ public class CheckOutPage {
     public CheckOutPage(WebDriver driver) throws SQLException {
         this.driver = driver;
         this.elementMethods = new ElementMethods(driver);
-        this.checkOutTable = new CheckOutTable();
+//        this.checkOutTable = new CheckOutTable();
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         PageFactory.initElements(driver, this);
@@ -169,7 +169,7 @@ public class CheckOutPage {
     }
 
     public void addEntryInTable(CheckOutObject data) throws SQLException {
-        checkOutTable.insertTableRow(data);
+//        checkOutTable.insertTableRow(data);
 
     }
 }

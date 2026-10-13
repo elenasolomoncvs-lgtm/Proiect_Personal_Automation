@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 import java.sql.SQLException;
 import java.util.Map;
 
-    @Listeners(ChainTestListener.class)
+
 public class CheckOutTest extends TestBasePage {
 
     private Map<String, CheckOutObject> CheckOutObjectMap;
